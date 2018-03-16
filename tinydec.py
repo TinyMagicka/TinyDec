@@ -12,6 +12,9 @@ python tinydec.py d  xxx.apk [dir]
 
 rebuild:
 python tinydec.py b  dir  [xxx.apk]
+
+sign:
+python tinydec.py s xxx.apk
 '''
 
 def build(src, dst):
@@ -37,12 +40,16 @@ def disassemble(src, dst):
     cmd = "java -jar %s %s/classes_dex2jar.jar" % (JD_GUI, dst)
     os.system(cmd)
 
+def sign(src, dst):
+    cmd = SIGNCMD+" %s tinymin"%src
+    os.system(cmd)
+
 def main():
     args = sys.argv
     if len(args) < 3:
         print USAGE
         exit()
-    func = {'b': build, 'd': disassemble}[args[1]]
+    func = {'b': build, 'd': disassemble, 's': sign }[args[1]]
     src = args[2]
     dst = "" if len(args) < 4 else args[3]
     func(src, dst)
