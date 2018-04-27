@@ -3,6 +3,7 @@
 
 import os
 import sys
+sys.path.append('/opt/TinyDec')
 from GlobalSetting import *
 
 USAGE = '''
