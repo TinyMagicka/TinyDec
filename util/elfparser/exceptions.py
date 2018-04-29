@@ -1,0 +1,3 @@
+
+class NotElfException(Exception):
+    pass
